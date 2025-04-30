@@ -13,14 +13,16 @@ namespace ConsoleApp1
 
         public static List<Product> Inventory = new List<Product>
         {
-            new Vaca("Vaca",200,0,0), //0
-            new Vaca("Bebe vaca",0,0,0), //1
-            new Oveja("Oveja",300,0,0), //2
-            new Oveja("Bebe oveja",0,0,0), //3
-            new Tomate("Semilla de Tomate",0,0,4,3), //4
+            new Vaca("Vaca",200,0,0,1,0), //0
+            new Vaca("Bebe vaca",0,0,0,0,0), //1
+            new Oveja("Oveja",300,0,0,10,0), //2
+            new Oveja("Bebe oveja",0,0,0,0,0), //3
+            new Seeds("Semilla de Tomate",0,0,4,3), //4
             new Tomate("Tomate",0,0,0,0),  //5
-            new Papa("Semilla de Papa",0,0,0,5), //6
+            new Seeds("Semilla de Papa",0,0,0,5), //6
             new Papa("Papa",0,0,0,0),  //7
+            new Product("Leche",300,0), //8
+            new Product("Lana", 500,0) //9
         };
 
         static void Main(string[] args)
@@ -28,8 +30,17 @@ namespace ConsoleApp1
             bool exit = false;
             while (!exit)
             {
-                Farm(4);
-                Farm(6);
+                FarmPlants(4);
+                FarmPlants(6);
+                FarmReproduction(0);
+                FarmReproduction(2);
+                AnimalGrowing(1);
+                AnimalGrowing(3);
+                AnimalProduction(0);
+                AnimalProduction(2);
+
+
+
                 Console.WriteLine("¿Quieres comprar o vender algo?");
                 Console.WriteLine("1. Si");
                 Console.WriteLine("2. No");
@@ -64,17 +75,7 @@ namespace ConsoleApp1
 
             if (product is IShop buyableProduct)
             {
-                Console.WriteLine($"¿Cuántas {Program.Inventory[productId].name} deseas comprar?");
-                string input = Console.ReadLine();
-
-                if (int.TryParse(input, out int quantity))
-                {
-                    buyableProduct.Buy(quantity);
-                }
-                else
-                {
-                    Console.WriteLine("Entrada no válida.");
-                }
+                buyableProduct.Buy();
             }
             else
             {
@@ -174,7 +175,7 @@ namespace ConsoleApp1
             }
         }
 
-        static void Farm(int i)
+        static void FarmPlants(int i)
         {
             Product product = Inventory[i];
 
@@ -183,5 +184,35 @@ namespace ConsoleApp1
                 seed.SeedGrow(i);
            }
         }
+
+        static void FarmReproduction(int i)
+        {
+            Product product = Inventory[i];
+
+            if(product is Animals animal)
+            {
+                animal.Reproduction(i);
+            }
+        }
+
+        static void AnimalGrowing(int i)
+        {
+            Product product = Inventory[i];
+
+            if (product is Animals animal && Program.Inventory[i].quantity > 0)
+            {
+                animal.Growing(i);
+            }
+        }
+        static void AnimalProduction(int i)
+        {
+            Product product = Inventory[i];
+
+            if (product is Animals animal && Program.Inventory[i].quantity > 0)
+            {
+                animal.Production(i);
+            }
+        }
+
     }
 }

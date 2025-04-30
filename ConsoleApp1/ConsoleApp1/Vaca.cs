@@ -8,12 +8,25 @@ namespace ConsoleApp1
 {
     internal class Vaca : Animals
     {
-        public Vaca(string name, int price, int quantity, int growCount) : base(name, price, quantity,growCount)
+
+        public Vaca(string name, int price, int quantity, int growCount, int productionDay, int productionDayOriginal) : base(name, price, quantity, growCount, productionDay, productionDayOriginal)
         {
         }
-        public void MilkProduction()
+        public override void Production(int selection)
         {
+            if (Program.Inventory[selection] is Animals animal && animal.productionDay > 0)
+            {
+                animal.productionDay -= 1;
 
+                if (animal.productionDay <= 0)
+                {
+                    Program.Inventory[selection + 8].quantity += animal.productionDay * Program.Inventory[selection].quantity;
+                    Console.WriteLine($"Ha obtenido {Program.Inventory[selection + 8].quantity} {Program.Inventory[selection + 8].name}");
+                    animal.productionDay = 0;
+                    animal.productionDay = animal.productionDayOriginal;
+
+                }
+            }
         }
     }
 }

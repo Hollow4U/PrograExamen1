@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Animals : Product , IShop
+    internal abstract class Animals : Product , IShop
     {
         int growCount;
-        public Animals(string name, int price, int quantity, int growCount) : base(name, price, quantity)
+        public int productionDay;
+        public int productionDayOriginal;
+
+        public Animals(string name, int price, int quantity, int growCount, int productionDay,int productionDayOriginal) : base(name, price, quantity)
         {
             this.growCount = growCount; 
+            this.productionDay = productionDay;
+            this.productionDayOriginal = productionDay;
         }
 
         public void Reproduction(int selection)
@@ -49,7 +54,10 @@ namespace ConsoleApp1
             }
         }
 
-        public void Buy(int i)
+        public abstract void Production(int i);
+
+
+        public void Buy()
         {
             bool exit = false;
             while (!exit)

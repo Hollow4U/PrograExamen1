@@ -44,6 +44,7 @@ namespace ConsoleApp1
                             }
                         }
 
+
                         Console.WriteLine($"Ahora tienes {Program.Inventory[selection].quantity} {Program.Inventory[selection].name}");
                         Console.WriteLine($"Plantas {quantityPlant} {Program.Inventory[selection].name}");
                     }

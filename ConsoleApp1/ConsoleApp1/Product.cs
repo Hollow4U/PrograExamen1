@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal abstract class Product 
+    internal class Product 
     {
         public string name { get; set; }
         public int quantity { get; set; } = 0;

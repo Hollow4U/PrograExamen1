@@ -8,6 +8,6 @@ namespace ConsoleApp1
 {
     internal interface IShop
     {
-        void Buy(int i);
+        void Buy();
     }
 }

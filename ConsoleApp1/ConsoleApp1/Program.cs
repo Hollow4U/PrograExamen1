@@ -10,6 +10,8 @@ namespace ConsoleApp1
     internal class Program
     {
         public static int money = 500;
+        public static int day = 0;
+        public static bool endDay = false;
 
         public static List<Product> Inventory = new List<Product>
         {
@@ -17,9 +19,9 @@ namespace ConsoleApp1
             new Vaca("Bebe vaca",0,0,0,0,0), //1
             new Oveja("Oveja",300,0,0,10,0), //2
             new Oveja("Bebe oveja",0,0,0,0,0), //3
-            new Seeds("Semilla de Tomate",0,0,4,3), //4
+            new Seeds("Semilla de Tomate",5,0,0,3), //4
             new Tomate("Tomate",55,0,0,0),  //5
-            new Seeds("Semilla de Papa",0,0,0,5), //6
+            new Seeds("Semilla de Papa",10,0,0,5), //6
             new Papa("Papa",70,0,0,0),  //7
             new Product("Leche",300,0), //8
             new Product("Lana", 500,0) //9
@@ -30,36 +32,83 @@ namespace ConsoleApp1
             bool exit = false;
             while (!exit)
             {
-                FarmPlants(4);
-                FarmPlants(6);
-                FarmReproduction(0);
-                FarmReproduction(2);
-                AnimalGrowing(1);
-                AnimalGrowing(3);
-                AnimalProduction(0);
-                AnimalProduction(2);
+                endDay = false;
+                day += 1;
 
-
-
-                Console.WriteLine("¿Quieres comprar o vender algo?");
-                Console.WriteLine("1. Si");
-                Console.WriteLine("2. No");
-
-                string shopOption = Console.ReadLine();
-
-                switch (shopOption)
+                while (!endDay)
                 {
-                    case "1":
-                        BuyingShop();
-                        break;
-                    case "2":
-                        SellingShop();
-                        break;
-                    default:
-                        Console.WriteLine("Opción no válida.");
-                        break;
-                }
+                    Console.WriteLine($"Dia {day}");
+                    FarmPlants(4);
+                    FarmPlants(6);
+                    FarmReproduction(0);
+                    FarmReproduction(2);
+                    AnimalGrowing(1);
+                    AnimalGrowing(3);
+                    AnimalProduction(0);
+                    AnimalProduction(2);
 
+
+                    Console.WriteLine("¿Quieres comprar o vender algo?");
+                    Console.WriteLine("1. Comprar");
+                    Console.WriteLine("2. Vender");
+                    Console.WriteLine("3. No quiero comprar");
+
+                    string shopOption = Console.ReadLine();
+
+                    switch (shopOption)
+                    {
+                        case "1":
+                            BuyingShop();
+                            break;
+                        case "2":
+                            SellingShop();
+                            break;
+                        case "3":
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+
+                    Console.WriteLine("¿Quieres plantar semillas?");
+                    Console.WriteLine("1. Semillas de Tomate");
+                    Console.WriteLine("2. Semillas de papa");
+                    Console.WriteLine("3. No quiero plantar semillas");
+                    string plantOption = Console.ReadLine();
+
+                    switch(plantOption)
+                    {
+                        case "1":
+                            PlantSeeds(4);
+                            break;
+                        case "2":
+                            PlantSeeds(6);
+                            break;
+                        case "3":
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+
+
+                    Console.WriteLine("¿Quieres pasar de dia?");
+                    Console.WriteLine("1. Si");
+                    Console.WriteLine("2. No");
+                    string dayContinue = Console.ReadLine();
+
+                    switch (dayContinue)
+                    {
+                        case "1":
+                            endDay = true;
+                            break;
+                        case "2":
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                } 
             }
         }
 
@@ -199,6 +248,15 @@ namespace ConsoleApp1
            {
                 seed.SeedGrow(i);
            }
+        }
+        static void PlantSeeds(int i)
+        {
+            Product product = Inventory[i];
+
+            if (product is Seeds seed)
+            {
+                seed.Plant(i);
+            }
         }
 
         static void FarmReproduction(int i)

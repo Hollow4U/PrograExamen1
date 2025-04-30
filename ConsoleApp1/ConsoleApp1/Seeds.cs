@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Seeds : Product
+    internal class Seeds : Product , IShop
     {
         public int growCount;
         public int growDay;
@@ -26,6 +26,7 @@ namespace ConsoleApp1
                 if (Program.Inventory[selection].quantity == 0)
                 {
                     Console.WriteLine("No tienes semillas para plantar");
+                    exit = true;
                 }
                 else
                 {
@@ -69,6 +70,47 @@ namespace ConsoleApp1
                     seeds.growCount = 0;
                     seeds.growDay = seeds.growDayOriginal;
                   
+                }
+            }
+        }
+
+        public void Buy()
+        {
+            bool exit = false;
+            while (!exit)
+            {
+                Console.WriteLine($"¿Quieres comprar {name}?");
+                Console.WriteLine("1. Si");
+                Console.WriteLine("2. No");
+
+                string option = Console.ReadLine();
+
+                switch (option)
+                {
+                    case "1":
+                        Console.WriteLine($"¿Cuántas unidades de {name} deseas comprar?");
+                        string quantityInput = Console.ReadLine();
+                        if (int.TryParse(quantityInput, out int quantity))
+                        {
+                            int precioTotal = quantity * price;
+                            Program.money = Program.money - precioTotal;
+                            this.quantity += quantity;
+
+
+                            Console.WriteLine($"Gastaste {precioTotal} y ahora tienes {Program.money} de dinero y obtuviste {this.quantity} {name}.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Cantidad no valida");
+                        }
+                        exit = true;
+                        break;
+                    case "2":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
         }

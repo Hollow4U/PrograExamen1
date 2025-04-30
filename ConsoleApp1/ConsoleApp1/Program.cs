@@ -104,8 +104,9 @@ namespace ConsoleApp1
                 Console.WriteLine("Bienvenido a la tienda");
                 Console.WriteLine("1. Comprar Vaca");
                 Console.WriteLine("2. Comprar Oveja");
-                Console.WriteLine("3. Comprar X");
-                Console.WriteLine("4. Salir");
+                Console.WriteLine("3. Comprar Semillas de Tomate");
+                Console.WriteLine("4. Comprar Semillas de Papa");
+                Console.WriteLine("5. Salir");
 
                 string option = Console.ReadLine();
 
@@ -118,9 +119,12 @@ namespace ConsoleApp1
                         ComprarProducto(2);
                         break;
                     case "3":
-                        ComprarProducto(2);
+                        ComprarProducto(4);
                         break;
                     case "4":
+                        ComprarProducto(6);
+                        break;
+                    case "5":
                         exit = true;
                         Console.WriteLine("¡Gracias por tu compra!");
                         break;
@@ -139,8 +143,11 @@ namespace ConsoleApp1
                 Console.WriteLine("Bienvenido a la tienda");
                 Console.WriteLine("1. Vender Vaca");
                 Console.WriteLine("2. Vender Oveja");
-                Console.WriteLine("3. Vender X");
-                Console.WriteLine("4. Salir");
+                Console.WriteLine("3. Vender Tomate");
+                Console.WriteLine("4. Vender Papa");
+                Console.WriteLine("5. Vender Leche");
+                Console.WriteLine("6. Vender Lana");
+                Console.WriteLine("7. Salir");
 
                 string option = Console.ReadLine();
 
@@ -153,9 +160,18 @@ namespace ConsoleApp1
                         VenderProducto(2);
                         break;
                     case "3":
-                        VenderProducto(2);
+                        VenderProducto(5);
                         break;
                     case "4":
+                        VenderProducto(7);
+                        break;
+                    case "5":
+                        VenderProducto(8);
+                        break;
+                    case "6":
+                        VenderProducto(9);
+                        break;
+                    case "7":
                         exit = true;
                         Console.WriteLine("¡Gracias por tu compra!");
                         break;

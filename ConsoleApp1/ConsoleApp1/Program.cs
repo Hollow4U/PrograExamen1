@@ -18,9 +18,9 @@ namespace ConsoleApp1
             new Oveja("Oveja",300,0,0,10,0), //2
             new Oveja("Bebe oveja",0,0,0,0,0), //3
             new Seeds("Semilla de Tomate",0,0,4,3), //4
-            new Tomate("Tomate",0,0,0,0),  //5
+            new Tomate("Tomate",55,0,0,0),  //5
             new Seeds("Semilla de Papa",0,0,0,5), //6
-            new Papa("Papa",0,0,0,0),  //7
+            new Papa("Papa",70,0,0,0),  //7
             new Product("Leche",300,0), //8
             new Product("Lana", 500,0) //9
         };

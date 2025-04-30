@@ -46,9 +46,12 @@
     <Compile Include="Animals.cs" />
     <Compile Include="IShop.cs" />
     <Compile Include="Oveja.cs" />
+    <Compile Include="Papa.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeds.cs" />
+    <Compile Include="Tomate.cs" />
     <Compile Include="Vaca.cs" />
   </ItemGroup>
   <ItemGroup>

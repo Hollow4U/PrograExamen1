@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Plants : Product
+    internal class Tomate : Seeds
     {
-        public Plants(string name, int price, int quantity) : base(name, price, quantity)
+        public Tomate(string name, int price, int quantity, int growCount, int growDay) : base(name, price, quantity, growCount, growDay)
         {
+
         }
     }
 }

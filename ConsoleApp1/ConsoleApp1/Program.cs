@@ -13,10 +13,14 @@ namespace ConsoleApp1
 
         public static List<Product> Inventory = new List<Product>
         {
-            new Vaca("Vaca",200,0,0),
-            new Vaca("Bebe vaca",0,0,0),
-            new Oveja("Oveja",300,0,0),
-            new Oveja("Bebe oveja",0,0,0)
+            new Vaca("Vaca",200,0,0), //0
+            new Vaca("Bebe vaca",0,0,0), //1
+            new Oveja("Oveja",300,0,0), //2
+            new Oveja("Bebe oveja",0,0,0), //3
+            new Tomate("Semilla de Tomate",0,0,4,3), //4
+            new Tomate("Tomate",0,0,0,0),  //5
+            new Papa("Semilla de Papa",0,0,0,5), //6
+            new Papa("Papa",0,0,0,0),  //7
         };
 
         static void Main(string[] args)
@@ -24,6 +28,8 @@ namespace ConsoleApp1
             bool exit = false;
             while (!exit)
             {
+                Farm(4);
+                Farm(6);
                 Console.WriteLine("¿Quieres comprar o vender algo?");
                 Console.WriteLine("1. Si");
                 Console.WriteLine("2. No");
@@ -37,7 +43,6 @@ namespace ConsoleApp1
                         break;
                     case "2":
                         SellingShop();
-                        exit = true;
                         break;
                     default:
                         Console.WriteLine("Opción no válida.");
@@ -160,8 +165,6 @@ namespace ConsoleApp1
                 }
             }
         }
-
-
         static void MostrarInventario()
         {
             Console.WriteLine(" Inventario actual");
@@ -169,6 +172,16 @@ namespace ConsoleApp1
             {
                 Console.WriteLine($"{product.name}: {product.quantity}");
             }
+        }
+
+        static void Farm(int i)
+        {
+            Product product = Inventory[i];
+
+           if(product is Seeds seed)
+           {
+                seed.SeedGrow(i);
+           }
         }
     }
 }
